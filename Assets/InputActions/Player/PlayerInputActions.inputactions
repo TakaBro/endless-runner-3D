@@ -1,0 +1,52 @@
+{
+    "name": "PlayerInputActions",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "dfb5dc5b-ee39-4ef9-b870-55d55090e6be",
+            "actions": [
+                {
+                    "name": "Movement",
+                    "type": "Button",
+                    "id": "125a6d6c-056d-4e71-bdaa-5e710cc9b55f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Jump",
+                    "type": "PassThrough",
+                    "id": "aad9d52c-3e1c-4f46-b516-71ca0b4450ae",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "1f3726a2-e5d1-487a-92b2-af9202e3fedb",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d1d1fe79-e9f3-4eeb-9e84-c31a196008df",
+                    "path": "<Touchscreen>/primaryTouch/press",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
