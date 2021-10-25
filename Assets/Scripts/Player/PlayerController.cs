@@ -5,49 +5,83 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    private PlayerInputActions inputActions;
-    //private TouchControls touchControls;
+    public static GameObject player;
+
+    [SerializeField] private Transform pointToMove;
+    [SerializeField] private GameEvent onPlayenEnterPlatform;
+    [SerializeField] private GameEvent onPlayenExitPlatform;
+    [SerializeField] Vector3 offsetFromPointToMove;
     private Animator anim;
+    private bool isAlive = true;
 
     private void Awake()
     {
-        inputActions = new PlayerInputActions();
-        //touchControls = new TouchControls();
+        Singleton();
     }
 
-    private void OnEnable()
+    private void Singleton()
     {
-        inputActions.Enable();
-        //touchControls.Enable();
-    }
-
-    private void OnDesable()
-    {
-        inputActions.Disable();
-        //touchControls.Disable();
+        if (player == null)
+        {
+            player = this.gameObject;
+        }
     }
 
     void Start()
     {
-        inputActions.Player.Jump.started += ctx => StartJump();
         anim = this.GetComponent<Animator>();
     }
 
     void Update()
     {
-        /*if (Input.GetKeyDown(KeyCode.Space))
+        // TODO: Comment debug controls
+        if (Input.GetKeyDown(KeyCode.A))
         {
-            anim.SetBool("isJumping", true);
-        }*/
+            MoveLeft();
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            MoveRight();
+        }
+
+        transform.position = Vector3.Lerp(transform.position, pointToMove.position + offsetFromPointToMove, 
+            Constants.PLAYER_MOVEMENT_SPEED * Time.deltaTime);
     }
 
-    private void StartJump()
+    public void MoveLeft()
     {
-        anim.SetBool("isJumping", true);
+        pointToMove.position = new Vector3(pointToMove.position.x - Constants.PLAYER_MOVEMENT_DISTANCE,
+                pointToMove.position.y, 0);
+    }
+
+    public void MoveRight()
+    {
+        pointToMove.position = new Vector3(pointToMove.position.x + Constants.PLAYER_MOVEMENT_DISTANCE,
+                pointToMove.position.y, 0);
+    }
+
+    public void StartJump()
+    {
+        pointToMove.position = new Vector3(pointToMove.position.x, 
+            pointToMove.position.y + Constants.PLAYER_JUMP_HEIGHT, 0);
+        anim.SetBool(AnimatorParameter.Is_JUMPING, true);
     }
 
     public void StopJump()
     {
-        anim.SetBool("isJumping", false);
+        anim.SetBool(AnimatorParameter.Is_JUMPING, false);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        isAlive = true;
+        onPlayenEnterPlatform.Raise();
+        //Debug.Log("TriggerENTER: instanceID " + other.gameObject.GetInstanceID());
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        onPlayenExitPlatform.Raise(other.gameObject.GetInstanceID());
+        //Debug.Log("TriggerEXIT: instanceID " + other.gameObject.GetInstanceID());
     }
 }
