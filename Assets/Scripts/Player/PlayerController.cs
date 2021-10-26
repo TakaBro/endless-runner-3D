@@ -75,7 +75,7 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         isAlive = true;
-        onPlayenEnterPlatform.Raise();
+        onPlayenEnterPlatform.Raise(other.tag);
         //Debug.Log("TriggerENTER: instanceID " + other.gameObject.GetInstanceID());
     }
 

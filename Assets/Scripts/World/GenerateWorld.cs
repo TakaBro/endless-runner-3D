@@ -18,6 +18,15 @@ public class GenerateWorld : MonoBehaviour
         RunDummy();
     }
 
+    public void CheckTagToRunDummy(string tag)
+    {
+        if (tag == "Platform")
+        {
+            Debug.Log("PLATFORM");
+            RunDummy();
+        }
+    }
+
     public void RunDummy()
     {
         GameObject p = ObjectPool.instance.GetRandom();

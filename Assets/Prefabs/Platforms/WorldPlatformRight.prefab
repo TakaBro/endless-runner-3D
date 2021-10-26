@@ -1835,7 +1835,7 @@ GameObject:
   - component: {fileID: 6868908300134997617}
   m_Layer: 0
   m_Name: WorldPlatformRight
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1911,7 +1911,10 @@ MonoBehaviour:
   Response:
     m_PersistentCalls:
       m_Calls: []
-  ResponseOneParameter:
+  ResponseOneParameterString:
+    m_PersistentCalls:
+      m_Calls: []
+  ResponseOneParameterInt:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6892341342714319176}
