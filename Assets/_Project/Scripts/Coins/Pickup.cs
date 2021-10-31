@@ -5,7 +5,7 @@ using UnityEngine;
 public class Pickup : MonoBehaviour
 {
     [SerializeField]
-    private GameEvent onCoinPicked;
+    private GameEventIntParameter onCoinPicked;
 
     [SerializeField]
     private GameObject model;

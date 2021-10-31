@@ -887,8 +887,6 @@ GameObject:
   - component: {fileID: 525437843}
   - component: {fileID: 525437842}
   - component: {fileID: 525437844}
-  - component: {fileID: 525437841}
-  - component: {fileID: 525437845}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -896,43 +894,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &525437841
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 525437840}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50ecc155b99c82b49ad360b0177b5e0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 269bd7655dbc77f49860b8e49ee54e83, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls: []
-  ResponseOneParameterString:
-    m_PersistentCalls:
-      m_Calls: []
-  ResponseOneParameterInt:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 525437842}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: PlayerEarnPoints
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  ResponseTwoParameter:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &525437842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -947,6 +908,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 2294959286134135119}
   uiController: {fileID: 969444080}
+  _OnCoinPicked: {fileID: 11400000, guid: 49950edbfa50e6a488dc6cfd50057fbc, type: 2}
+  _OnPlayerDies: {fileID: 11400000, guid: 9391e17388997d445b636f35a89c7f04, type: 2}
 --- !u!4 &525437843
 Transform:
   m_ObjectHideFlags: 0
@@ -973,43 +936,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65c5844967da68b4dbdf3194a6e981ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &525437845
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 525437840}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50ecc155b99c82b49ad360b0177b5e0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 8d0b57c26b685bd46ab46561ff242ccc, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 525437842}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: PlayerDies
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  ResponseOneParameterString:
-    m_PersistentCalls:
-      m_Calls: []
-  ResponseOneParameterInt:
-    m_PersistentCalls:
-      m_Calls: []
-  ResponseTwoParameter:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &612293925 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4938456672592093723, guid: d85edab7576f54804a36163b78f6ed54, type: 3}
@@ -1219,7 +1145,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &959530457
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1435,8 +1361,6 @@ GameObject:
   - component: {fileID: 1248539999}
   - component: {fileID: 1248539998}
   - component: {fileID: 1248540002}
-  - component: {fileID: 1248540001}
-  - component: {fileID: 1248540000}
   m_Layer: 0
   m_Name: InputManager
   m_TagString: Untagged
@@ -1456,9 +1380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ac8b97cb93c76845bbe582f1bc80088, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onTap: {fileID: 11400000, guid: 86b4c2c7d2e091040a0bff48e4ddc017, type: 2}
-  onStartTouch: {fileID: 11400000, guid: 35d5c95f0c69e83479d9f4206a0f839e, type: 2}
-  onEndTouch: {fileID: 11400000, guid: 88b44dd8c05dec648aa3f6d28f0be9bc, type: 2}
+  _onTap: {fileID: 11400000, guid: 10488b7dbabe5494baddfbd0ab07d746, type: 2}
 --- !u!4 &1248539999
 Transform:
   m_ObjectHideFlags: 0
@@ -1473,80 +1395,6 @@ Transform:
   m_Father: {fileID: 1380254641}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1248540000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1248539997}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50ecc155b99c82b49ad360b0177b5e0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 88b44dd8c05dec648aa3f6d28f0be9bc, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls: []
-  ResponseOneParameterString:
-    m_PersistentCalls:
-      m_Calls: []
-  ResponseOneParameterInt:
-    m_PersistentCalls:
-      m_Calls: []
-  ResponseTwoParameter:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1248540002}
-        m_TargetAssemblyTypeName: SwipeDetection, Assembly-CSharp
-        m_MethodName: SwipeEnd
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &1248540001
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1248539997}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50ecc155b99c82b49ad360b0177b5e0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 35d5c95f0c69e83479d9f4206a0f839e, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls: []
-  ResponseOneParameterString:
-    m_PersistentCalls:
-      m_Calls: []
-  ResponseOneParameterInt:
-    m_PersistentCalls:
-      m_Calls: []
-  ResponseTwoParameter:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1248540002}
-        m_TargetAssemblyTypeName: SwipeDetection, Assembly-CSharp
-        m_MethodName: SwipeStart
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1248540002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1559,11 +1407,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 938b81c25e179204d8f5961d80ae79a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onSwipeLeft: {fileID: 11400000, guid: c4141b3b878ef4d4a9efb010ca177525, type: 2}
-  onSwipeRight: {fileID: 11400000, guid: 286e27abf152dcf4e9bcf5a87bdd4413, type: 2}
   _minimumDistance: 0.2
   _maximumTime: 1
   _directionThreshold: 0.9
+  _OnSwipeLeft: {fileID: 11400000, guid: 176da015e74613647820a5a1ed47eb00, type: 2}
+  _OnSwipeRight: {fileID: 11400000, guid: 286e27abf152dcf4e9bcf5a87bdd4413, type: 2}
 --- !u!1 &1380254640
 GameObject:
   m_ObjectHideFlags: 0
@@ -1863,7 +1711,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1609031097}
   - component: {fileID: 1609031096}
-  - component: {fileID: 1609031098}
   m_Layer: 0
   m_Name: World
   m_TagString: Untagged
@@ -1883,6 +1730,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58144b55a6838244a8b0b277e1ad8e24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _OnPlayerEnterPlatform: {fileID: 11400000, guid: 0e7e37c5d520cdd41991d91fb463f7e1, type: 2}
   _lastPlatform: {fileID: 376215531}
 --- !u!4 &1609031097
 Transform:
@@ -1898,43 +1746,6 @@ Transform:
   m_Father: {fileID: 1962658913}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1609031098
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1609031095}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50ecc155b99c82b49ad360b0177b5e0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: b39bdc18f70ad9546b843162fee3ec4e, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1609031096}
-        m_TargetAssemblyTypeName: GenerateWorld, Assembly-CSharp
-        m_MethodName: RunDummy
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  ResponseOneParameterString:
-    m_PersistentCalls:
-      m_Calls: []
-  ResponseOneParameterInt:
-    m_PersistentCalls:
-      m_Calls: []
-  ResponseTwoParameter:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &1962658912
 GameObject:
   m_ObjectHideFlags: 0
@@ -3171,7 +2982,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe39ba213ea60444097b5dd7db05d163, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _onDeathTriggerEnter: {fileID: 11400000, guid: 8d0b57c26b685bd46ab46561ff242ccc, type: 2}
+  _onPlayerEnterDeathTrigger: {fileID: 11400000, guid: 9391e17388997d445b636f35a89c7f04, type: 2}
 --- !u!4 &460705064162931640
 Transform:
   m_ObjectHideFlags: 0
@@ -6446,9 +6257,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1970076736579385772}
   - component: {fileID: 2294959286134135119}
-  - component: {fileID: 2294959286134135120}
-  - component: {fileID: 2294959286134135124}
-  - component: {fileID: 2294959286134135123}
   - component: {fileID: 2294959286134135122}
   - component: {fileID: 2294959286134135121}
   - component: {fileID: 1228156930756687059}
@@ -6472,50 +6280,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pointToMove: {fileID: 633109507}
-  _OnTap: {fileID: 11400000, guid: 86b4c2c7d2e091040a0bff48e4ddc017, type: 2}
-  _OnSwipeLeft: {fileID: 11400000, guid: c4141b3b878ef4d4a9efb010ca177525, type: 2}
-  _OnSwipeRight: {fileID: 11400000, guid: 286e27abf152dcf4e9bcf5a87bdd4413, type: 2}
-  _onPlayerEnterPlatform: {fileID: 11400000, guid: b39bdc18f70ad9546b843162fee3ec4e, type: 2}
-  _onPlayerExitPlatform: {fileID: 11400000, guid: 885f70359a205df46800422689085727, type: 2}
   _offsetFromPointToMove: {x: 0, y: 0, z: 2}
-  eventListeners: []
---- !u!114 &2294959286134135120
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2294959286134135118}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50ecc155b99c82b49ad360b0177b5e0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 86b4c2c7d2e091040a0bff48e4ddc017, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2294959286134135119}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: StartJump
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  ResponseOneParameterString:
-    m_PersistentCalls:
-      m_Calls: []
-  ResponseOneParameterInt:
-    m_PersistentCalls:
-      m_Calls: []
-  ResponseTwoParameter:
-    m_PersistentCalls:
-      m_Calls: []
+  _OnTap: {fileID: 11400000, guid: 10488b7dbabe5494baddfbd0ab07d746, type: 2}
+  _OnSwipeLeft: {fileID: 11400000, guid: 176da015e74613647820a5a1ed47eb00, type: 2}
+  _OnSwipeRight: {fileID: 11400000, guid: 286e27abf152dcf4e9bcf5a87bdd4413, type: 2}
+  _OnPlayerEnterPlatform: {fileID: 11400000, guid: 0e7e37c5d520cdd41991d91fb463f7e1, type: 2}
+  _OnPlayerExitPlatform: {fileID: 11400000, guid: abaed6d02cefa67459f4c94c5adfe62e, type: 2}
 --- !u!136 &2294959286134135121
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -6546,80 +6316,6 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &2294959286134135123
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2294959286134135118}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50ecc155b99c82b49ad360b0177b5e0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 286e27abf152dcf4e9bcf5a87bdd4413, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2294959286134135119}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: MoveRight
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  ResponseOneParameterString:
-    m_PersistentCalls:
-      m_Calls: []
-  ResponseOneParameterInt:
-    m_PersistentCalls:
-      m_Calls: []
-  ResponseTwoParameter:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &2294959286134135124
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2294959286134135118}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50ecc155b99c82b49ad360b0177b5e0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: c4141b3b878ef4d4a9efb010ca177525, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2294959286134135119}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: MoveLeft
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  ResponseOneParameterString:
-    m_PersistentCalls:
-      m_Calls: []
-  ResponseOneParameterInt:
-    m_PersistentCalls:
-      m_Calls: []
-  ResponseTwoParameter:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &2295847721327437630
 GameObject:
   m_ObjectHideFlags: 0

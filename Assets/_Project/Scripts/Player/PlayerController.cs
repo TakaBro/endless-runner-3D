@@ -6,58 +6,44 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private Transform _pointToMove;
-    // As listener
-    [Header("Event to register:")]
+    [SerializeField] private Vector3 _offsetFromPointToMove;
+
+    [Header("Events to register:")] // As listener
     [SerializeField] private GameEvent _OnTap;
     [SerializeField] private GameEvent _OnSwipeLeft;
     [SerializeField] private GameEvent _OnSwipeRight;
-    // As invoker
-    [Header("Event to response:")]
-    [SerializeField] private GameEvent _onPlayerEnterPlatform;
-    [SerializeField] private GameEvent _onPlayerExitPlatform;
-    [SerializeField] private Vector3 _offsetFromPointToMove;
 
-    private List<GameEvent> events = new List<GameEvent>();
-    public List<GameEventListener> eventListeners = new List<GameEventListener>();
+    [Header("Events to trigger:")]
+    [SerializeField] private GameEvent _OnPlayerEnterPlatform;
+    [SerializeField] private GameEventIntParameter _OnPlayerExitPlatform;
 
     private Animator _anim;
-    private bool _onRight = false;
-    private bool _onLeft = false;
-    private bool _inMiddle = true;
+    private bool _isPlayerOnRight = false;
+    private bool _isPlayerOnLeft = false;
+    private bool _isPlayerInMiddle = true;
 
     private void OnEnable()
     {
-        AddEventToListen(_OnTap);
-        AddEventToListen(_OnSwipeLeft);
-        AddEventToListen(_OnSwipeRight);
-        RegisterAsListenerToEvents();
+        RegisterAsListener();
     }
 
-    private void AddEventToListen(GameEvent gameEvent)
+    private void RegisterAsListener()
     {
-        events.Add(gameEvent);
-        eventListeners.Add(new GameEventListener());
-    }
-
-    private void RegisterAsListenerToEvents()
-    {
-        for (int i = 0; i < events.Count ; i++)
-        {
-            events[i].RegisterListener(eventListeners[i]);
-        }
+        _OnTap.RegisterListener(StartJump);
+        _OnSwipeLeft.RegisterListener(MoveLeft);
+        _OnSwipeRight.RegisterListener(MoveRight);
     }
 
     private void OnDisable()
     {
-        UnregisterAsListenerToEvents();
+        UnregisterAsListener();
     }
 
-    private void UnregisterAsListenerToEvents()
+    private void UnregisterAsListener()
     {
-        for (int i = 0; i < events.Count; i++)
-        {
-            events[i].UnregisterListener(eventListeners[i]);
-        }
+        _OnTap.UnregisterListener(StartJump);
+        _OnSwipeLeft.UnregisterListener(MoveLeft);
+        _OnSwipeRight.UnregisterListener(MoveRight);
     }
 
     private void Start()
@@ -67,7 +53,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        // TODO: Comment debug controls
+        // Comment debug controls
         if (Input.GetKeyDown(KeyCode.A))
         {
             MoveLeft();
@@ -86,49 +72,9 @@ public class PlayerController : MonoBehaviour
             Constants.PLAYER_MOVEMENT_SPEED * Time.deltaTime);
     }
 
-    public void MoveLeft()
+    private void StartJump()
     {
-        if (_inMiddle)
-        {
-            _pointToMove.position = new Vector3(_pointToMove.position.x - Constants.PLAYER_MOVEMENT_DISTANCE,
-                _pointToMove.position.y, 0);
-
-            _onLeft = true;
-            _inMiddle = false;
-        }
-        else if (_onRight)
-        {
-            _pointToMove.position = new Vector3(_pointToMove.position.x - Constants.PLAYER_MOVEMENT_DISTANCE,
-                _pointToMove.position.y, 0);
-
-            _inMiddle = true;
-            _onRight = false;
-        }
-    }
-
-    public void MoveRight()
-    {
-        if (_inMiddle)
-        {
-            _pointToMove.position = new Vector3(_pointToMove.position.x + Constants.PLAYER_MOVEMENT_DISTANCE,
-                _pointToMove.position.y, 0);
-
-            _onRight = true;
-            _inMiddle = false;
-        }
-        else if (_onLeft)
-        {
-            _pointToMove.position = new Vector3(_pointToMove.position.x + Constants.PLAYER_MOVEMENT_DISTANCE,
-                _pointToMove.position.y, 0);
-
-            _inMiddle = true;
-            _onLeft = false;
-        }
-    }
-
-    public void StartJump()
-    {
-        _pointToMove.position = new Vector3(_pointToMove.position.x, 
+        _pointToMove.position = new Vector3(_pointToMove.position.x,
             _pointToMove.position.y + Constants.PLAYER_JUMP_HEIGHT, 0);
         _anim.SetBool(AnimatorParameter.Is_JUMPING, true);
     }
@@ -138,17 +84,56 @@ public class PlayerController : MonoBehaviour
         _anim.SetBool(AnimatorParameter.Is_JUMPING, false);
     }
 
+    private void MoveLeft()
+    {
+        if (_isPlayerInMiddle)
+        {
+            _pointToMove.position = new Vector3(_pointToMove.position.x - Constants.PLAYER_MOVEMENT_DISTANCE,
+                _pointToMove.position.y, 0);
+
+            _isPlayerOnLeft = true;
+            _isPlayerInMiddle = false;
+        }
+        else if (_isPlayerOnRight)
+        {
+            _pointToMove.position = new Vector3(_pointToMove.position.x - Constants.PLAYER_MOVEMENT_DISTANCE,
+                _pointToMove.position.y, 0);
+
+            _isPlayerInMiddle = true;
+            _isPlayerOnRight = false;
+        }
+    }
+
+    private void MoveRight()
+    {
+        if (_isPlayerInMiddle)
+        {
+            _pointToMove.position = new Vector3(_pointToMove.position.x + Constants.PLAYER_MOVEMENT_DISTANCE,
+                _pointToMove.position.y, 0);
+
+            _isPlayerOnRight = true;
+            _isPlayerInMiddle = false;
+        }
+        else if (_isPlayerOnLeft)
+        {
+            _pointToMove.position = new Vector3(_pointToMove.position.x + Constants.PLAYER_MOVEMENT_DISTANCE,
+                _pointToMove.position.y, 0);
+
+            _isPlayerInMiddle = true;
+            _isPlayerOnLeft = false;
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.TryGetComponent(out Platform platform))
+        if (other.gameObject.TryGetComponent(out PlatformController platform))
         {
-            Debug.Log("out Platform platform");
-            _onPlayerEnterPlatform.Raise();
+            _OnPlayerEnterPlatform.Raise();
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        _onPlayerExitPlatform.Raise(other.gameObject.GetInstanceID());
+        _OnPlayerExitPlatform.Raise(other.gameObject.GetInstanceID());
     }
 }

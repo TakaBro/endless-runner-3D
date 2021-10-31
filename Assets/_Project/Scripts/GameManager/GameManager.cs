@@ -12,6 +12,10 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private UIController uiController;
 
+    [Header("Events to register:")] // As listener
+    [SerializeField] private GameEventIntParameter _OnCoinPicked;
+    [SerializeField] private GameEvent _OnPlayerDies;
+
     private PlayerData _playerData;
     private JsonLoader _jsonLoader;
 
@@ -30,6 +34,28 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        RegisterAsListener();
+    }
+
+    private void RegisterAsListener()
+    {
+        _OnCoinPicked.RegisterListener(PlayerEarnPoints);
+        _OnPlayerDies.RegisterListener(PlayerDies);
+    }
+
+    private void OnDisable()
+    {
+        UnregisterAsListener();
+    }
+
+    private void UnregisterAsListener()
+    {
+        _OnCoinPicked.UnregisterListener(PlayerEarnPoints);
+        _OnPlayerDies.UnregisterListener(PlayerDies);
+    }
+
     private void Start()
     {
         _playerData = new PlayerData();
@@ -44,13 +70,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void PlayerEarnPoints(int points)
+    private void PlayerEarnPoints(int points)
     {
         _points = _points + points;
         uiController.UpdateCoinsCounter(_points.ToString());
     }
 
-    public void PlayerDies()
+    private void PlayerDies()
     {
         player.gameObject.SetActive(false);
         uiController.EnableGameOverPopup();

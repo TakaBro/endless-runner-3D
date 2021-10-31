@@ -3369,7 +3369,6 @@ GameObject:
   - component: {fileID: 5471523478929667002}
   - component: {fileID: 1715720354586579899}
   - component: {fileID: 8279842855411207458}
-  - component: {fileID: 2825666859037648973}
   - component: {fileID: 740708579789213972}
   - component: {fileID: 2041201458486349070}
   - component: {fileID: 7397886008743400771}
@@ -3420,43 +3419,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ac8fa5c96bba404099e0e02d3d078f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2825666859037648973
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8416531089619056167}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50ecc155b99c82b49ad360b0177b5e0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 885f70359a205df46800422689085727, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls: []
-  ResponseOneParameterString:
-    m_PersistentCalls:
-      m_Calls: []
-  ResponseOneParameterInt:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8279842855411207458}
-        m_TargetAssemblyTypeName: PoolReturn, Assembly-CSharp
-        m_MethodName: CheckInstanceToReturn
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  ResponseTwoParameter:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!65 &740708579789213972
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3495,3 +3457,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1303502622b52e84ea7d31e3364efb9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _OnPlayerExitPlatform: {fileID: 11400000, guid: abaed6d02cefa67459f4c94c5adfe62e, type: 2}

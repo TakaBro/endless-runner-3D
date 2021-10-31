@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5458007427831439412}
   - component: {fileID: 3113537208441157045}
   - component: {fileID: 8152038192628548279}
-  - component: {fileID: 8011744500326497465}
   - component: {fileID: -3032532191757754871}
   m_Layer: 0
   m_Name: WorldPlatformMiddle
@@ -85,43 +84,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c3a33082bef9c2498652d71e48ab587, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8011744500326497465
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2127933593386646303}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50ecc155b99c82b49ad360b0177b5e0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 885f70359a205df46800422689085727, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls: []
-  ResponseOneParameterString:
-    m_PersistentCalls:
-      m_Calls: []
-  ResponseOneParameterInt:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3113537208441157045}
-        m_TargetAssemblyTypeName: PoolReturn, Assembly-CSharp
-        m_MethodName: CheckInstanceToReturn
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  ResponseTwoParameter:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &-3032532191757754871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,6 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1303502622b52e84ea7d31e3364efb9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _OnPlayerExitPlatform: {fileID: 11400000, guid: abaed6d02cefa67459f4c94c5adfe62e, type: 2}
 --- !u!1 &8892652863969535235
 GameObject:
   m_ObjectHideFlags: 0

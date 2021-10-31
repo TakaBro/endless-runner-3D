@@ -5,12 +5,33 @@ using UnityEngine;
 public class GenerateWorld : MonoBehaviour
 {
     [SerializeField]
+    private GameEvent _OnPlayerEnterPlatform;
+    [SerializeField]
     private GameObject _lastPlatform;
     private GameObject _dummyTraveller;
 
+    private void OnEnable()
+    {
+        RegisterAsListener();
+    }
+
+    private void RegisterAsListener()
+    {
+        _OnPlayerEnterPlatform.RegisterListener(RunDummy);
+    }
+
+    private void OnDisable()
+    {
+        UnregisterAsListener();
+    }
+
+    private void UnregisterAsListener()
+    {
+        _OnPlayerEnterPlatform.UnregisterListener(RunDummy);
+    }
+
     public void RunDummy()
     {
-        Debug.Log("RunDummy");
         GameObject p = ObjectPool.instance.GetRandom();
         if (p == null) return;
 

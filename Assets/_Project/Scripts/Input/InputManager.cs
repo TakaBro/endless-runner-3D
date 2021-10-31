@@ -5,11 +5,11 @@ using UnityEngine.InputSystem.EnhancedTouch;
 
 public class InputManager : MonoBehaviour
 {
-    [SerializeField] private GameEvent onTap;
-    [SerializeField] private GameEvent onStartTouch;
-    [SerializeField] private GameEvent onEndTouch;
+    [Header("Events to trigger:")]
+    [SerializeField] private GameEvent _onTap;
 
     private TouchControls _touchControls;
+    private SwipeDetection _swipeDetection;
     private Camera _mainCamera;
 
     private void Awake()
@@ -39,6 +39,7 @@ public class InputManager : MonoBehaviour
 
     private void Start()
     {
+        _swipeDetection = GetComponent<SwipeDetection>();
         RegisterToTouchPress();
     }
 
@@ -52,17 +53,19 @@ public class InputManager : MonoBehaviour
     private void Tap()
     {
         Debug.Log("TAP");
-        onTap.Raise();
+        _onTap.Raise();
     }
 
     private void StartTouch(InputAction.CallbackContext context)
     {
-        onStartTouch.Raise(Utils.ScreenToWorld(_mainCamera, _touchControls.Touch.TouchPosition.ReadValue<Vector2>()), (float)context.startTime);
+        _swipeDetection.SwipeStart(Utils.ScreenToWorld(_mainCamera, _touchControls.Touch.TouchPosition.ReadValue<Vector2>()), 
+            (float)context.startTime);
     }
 
     private void EndTouch(InputAction.CallbackContext context)
     {
-        onEndTouch.Raise(Utils.ScreenToWorld(_mainCamera, _touchControls.Touch.TouchPosition.ReadValue<Vector2>()), (float)context.time);
+        _swipeDetection.SwipeEnd(Utils.ScreenToWorld(_mainCamera, _touchControls.Touch.TouchPosition.ReadValue<Vector2>()), 
+            (float)context.startTime);
     }
 
     public Vector2 TouchContact()
