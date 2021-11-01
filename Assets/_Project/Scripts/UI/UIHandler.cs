@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class UIController : MonoBehaviour
+public class UIHandler : MonoBehaviour
 {
     [SerializeField]
     private TextMeshProUGUI _scoreText;

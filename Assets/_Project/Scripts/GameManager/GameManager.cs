@@ -4,13 +4,16 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.IO;
+using Newtonsoft.Json;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public PlayerController player;
+    public int playerPoints = Constants.PLAYER_DEFAULT_COIN_VALUE;
+    public int playerHighestScore;
 
-    [SerializeField] private UIController uiController;
+    [SerializeField] private UIHandler uiController;
 
     [Header("Events to register:")] // As listener
     [SerializeField] private GameEventIntParameter _OnCoinPicked;
@@ -18,8 +21,6 @@ public class GameManager : MonoBehaviour
 
     private PlayerData _playerData;
     private JsonLoader _jsonLoader;
-
-    private int _points = 0;
 
     private void Awake()
     {
@@ -36,7 +37,30 @@ public class GameManager : MonoBehaviour
 
     private void OnEnable()
     {
+        InitializePlayerData();
+
+        LoadPlayerData();
+
         RegisterAsListener();
+    }
+
+    private void InitializePlayerData()
+    {
+        _playerData = new PlayerData();
+        _jsonLoader = GetComponent<JsonLoader>();
+    }
+
+    private void LoadPlayerData()
+    {
+        string filePath = Application.persistentDataPath + "/" + Constants.PLAYER_DATA_FILE_NAME;
+
+        if (File.Exists(filePath))
+        {
+            _playerData =  _jsonLoader.Load(filePath);
+            playerHighestScore = _playerData.highestScore;
+            Debug.Log("_playerData: " + _playerData);
+            Debug.Log("playerHighestScore: " + playerHighestScore);
+        }
     }
 
     private void RegisterAsListener()
@@ -56,29 +80,31 @@ public class GameManager : MonoBehaviour
         _OnPlayerDies.UnregisterListener(PlayerDies);
     }
 
-    private void Start()
-    {
-        _playerData = new PlayerData();
-        _jsonLoader = GetComponent<JsonLoader>();
-
-        string gameDataFileName = "test";
-        string filePath = Application.persistentDataPath;// + "/" + gameDataFileName;
-        Debug.Log("Application.persistentDataPath : " + filePath);
-        if (File.Exists(filePath))
-        {
-            _jsonLoader.Load(filePath);
-        }
-    }
-
     private void PlayerEarnPoints(int points)
     {
-        _points = _points + points;
-        uiController.UpdateCoinsCounter(_points.ToString());
+        playerPoints = playerPoints + points;
+        uiController.UpdateCoinsCounter(playerPoints.ToString());
     }
 
     private void PlayerDies()
     {
+        LoadPlayerData();
         player.gameObject.SetActive(false);
         uiController.EnableGameOverPopup();
+        SavePlayerData();
+    }
+
+    private void SavePlayerData()
+    {
+        if (playerPoints > playerHighestScore)
+        {
+            playerHighestScore = playerPoints;
+        }
+
+        _playerData.name = "Taka";
+        _playerData.highestScore = playerHighestScore;
+        Debug.Log("Application.persistentDataPath : " + _playerData);
+
+        File.WriteAllText(Application.persistentDataPath + "/" + Constants.PLAYER_DATA_FILE_NAME, JsonConvert.SerializeObject(_playerData));
     }
 }

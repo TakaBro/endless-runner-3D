@@ -5,10 +5,9 @@ using UnityEngine;
 
 public class JsonLoader : MonoBehaviour
 {
-    public void Load(string filePath)
+    public PlayerData Load(string filePath)
     {
-        Debug.Log("JSON PATH: " + filePath);
-        //string dataJson = File.ReadAllText(filePath);
-        //JsonUtility.FromJson<PlayerData>(dataJson);
+        string dataJson = File.ReadAllText(filePath);
+        return JsonUtility.FromJson<PlayerData>(dataJson);
     }
 }

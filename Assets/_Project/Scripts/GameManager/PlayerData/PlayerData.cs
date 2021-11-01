@@ -5,5 +5,5 @@ using UnityEngine;
 public class PlayerData
 {
     public string name;
-    public int bestScore;
+    public int highestScore;
 }
